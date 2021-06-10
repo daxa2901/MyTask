@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load get_Dict %}
+{% block mylist %} active{% endblock mylist %} 
+{% block body %}
+
+<ul style='list-style-type:none'>
+
+    {% for l in list1 %}
+    <li>
+        - {{l.Title}}
+        <ul style='list-style-type:none'>
+            {% for l2 in dict|get_val:l.SINO %}
+            <li>- {{l2.Title}}</li>
+
+                {% for l3 in dict|get_val:l2.SINO %}
+                <ul style='list-style-type:none'>
+                    <li>
+                        - {{l3.Title}}</li>
+                </ul>
+            {% endfor %}
+            {% endfor %}
+    </li>
+</ul>
+{% endfor %}
+{% endblock body%}

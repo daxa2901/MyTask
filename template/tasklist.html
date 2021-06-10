@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block tasklist %} active{% endblock tasklist %} 
+{% block body %}
+<div class='container text-center w-75 '>
+<table class = 'table  my-2 table-striped'>
+<thead class = 'thead-dark bg-primary '>
+    <tr > 
+        <th> UID </th>
+        <th> Task_Title </th>
+        <th> Task_Description </th>
+        <th> Task_Pic </th>
+        <th> Create Time </th>
+
+    </tr>
+</thead>
+<tbody>
+    {% for d in data %}   <tr>
+
+    <td> {{d.uid}}</td>
+    <td> {{d.task_title}}</td>
+    <td> {{d.task_description}}</td>
+    <td> <img src='{{d.task_pic}}' height= '100px' width = '100px'></td>
+    <td> {{d.create_time_stamp}}</td>
+    </tr>
+    {% endfor %}
+ </tbody>
+</table>    
+    </div>
+    <div class='text-center my-3'>
+  <span>
+    {% if data.has_previous %}
+      <a href="?page={{data.previous_page_number}}"> Previous </a>
+    {% endif %}
+
+    <span>{{ data.number }} of {{data.paginator.num_pages}}</span>
+
+    {% if data.has_next %}
+      <a href="?page={{data.next_page_number}}"> Next </a>
+    {% endif %}
+
+  </span>
+
+  </div>
+{% endblock body%}
